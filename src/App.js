@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import CountryInput from "./Components/CountryInput/CountryInput";
 
 function App() {
   return (
@@ -7,6 +8,9 @@ function App() {
       <header>
         <h1>Smog Alert!</h1>
       </header>
+      <main>
+        <CountryInput />
+      </main>
     </React.Fragment>
   );
 }
