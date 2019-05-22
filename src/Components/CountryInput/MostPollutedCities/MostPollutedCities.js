@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CityDescription from "./CityDescription/CityDescription";
 
 class MostPollutedCities extends Component {
   constructor(props) {
@@ -27,19 +28,15 @@ class MostPollutedCities extends Component {
         a.measurements[0].value > b.measurements[0].value ? -1 : 1
       );
       displayCities = (
-        <ol>
+        <ul>
           {dataSortedByPM25.slice(0, 10).map(e => (
-            <ul key={e.city + e.measurements[0].value}>
+            <li key={e.city + e.measurements[0].value}>
               {e.city} ({e.measurements[0].value})
-            </ul>
+              <CityDescription cityName={e.city} />
+            </li>
           ))}
-        </ol>
+        </ul>
       );
-      // console.table(
-      //   dataSortedByPM25
-      //     .slice(0, 10)
-      //     .map(e => `${e.city} (${e.measurements[0].value})`)
-      // );
     }
     return <h2>{displayCities}</h2>;
   }
