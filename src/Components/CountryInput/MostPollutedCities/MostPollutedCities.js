@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 
 class MostPollutedCities extends Component {
-  state = { fetchedData: null };
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = { fetchedData: null, countryID: this.props.countryID };
+  }
+
+  componentWillReceiveProps(props) {
     fetch(
       `https://api.openaq.org/v1/latest?limit=350&parameter=pm25&country=${
-        this.props.countryID
+        props.countryID
       }`
     )
       .then(res => res.json())
@@ -16,17 +20,28 @@ class MostPollutedCities extends Component {
   }
 
   render() {
+    let displayCities;
     if (this.state.fetchedData === null) {
-      console.log("null");
     } else {
-      const dataSortedByPM25 = this.state.fetchedData.results.sort((a, b) =>
+      let dataSortedByPM25 = this.state.fetchedData.results.sort((a, b) =>
         a.measurements[0].value > b.measurements[0].value ? -1 : 1
       );
-      console.table(
-        dataSortedByPM25.map(e => `${e.city} (${e.measurements[0].value})`)
+      displayCities = (
+        <ol>
+          {dataSortedByPM25.slice(0, 10).map(e => (
+            <ul key={e.city + e.measurements[0].value}>
+              {e.city} ({e.measurements[0].value})
+            </ul>
+          ))}
+        </ol>
       );
+      // console.table(
+      //   dataSortedByPM25
+      //     .slice(0, 10)
+      //     .map(e => `${e.city} (${e.measurements[0].value})`)
+      // );
     }
-    return <p>Cokolwiek</p>;
+    return <h2>{displayCities}</h2>;
   }
 }
 
