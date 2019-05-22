@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import CityDescription from "./CityDescription/CityDescription";
+import "./MostPollutedCities.scss";
+import { Accordion, Card } from "react-bootstrap";
 
 class MostPollutedCities extends Component {
   constructor(props) {
@@ -28,17 +30,26 @@ class MostPollutedCities extends Component {
         a.measurements[0].value > b.measurements[0].value ? -1 : 1
       );
       displayCities = (
-        <ul>
+        <Accordion>
           {dataSortedByPM25.slice(0, 10).map(e => (
-            <li key={e.city + e.measurements[0].value}>
-              {e.city} ({e.measurements[0].value})
-              <CityDescription cityName={e.city} />
-            </li>
+            <Card>
+              <Accordion.Toggle
+                as={Card.Header}
+                eventKey={e.city + e.measurements[0].value}
+              >
+                {e.city} ({e.measurements[0].value})
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey={e.city + e.measurements[0].value}>
+                <Card.Body>
+                  <CityDescription cityName={e.city} />
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
           ))}
-        </ul>
+        </Accordion>
       );
     }
-    return <h2>{displayCities}</h2>;
+    return <div>{displayCities}</div>;
   }
 }
 

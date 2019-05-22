@@ -16,3 +16,9 @@ function App() {
 }
 
 export default App;
+
+/**
+//*    TODO
+//* Parameter input  (pm,co, so)
+//*
+*/

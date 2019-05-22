@@ -48,7 +48,7 @@ class CountryInput extends Component {
       <React.Fragment>
         <form onSubmit={this.handleSubmitCountry}>
           <label>
-            Type Country (Poland, Germany, France and Spain available)
+            Type Country (Poland, Germany, France and Spain are available)
           </label>
           <br />
           <input

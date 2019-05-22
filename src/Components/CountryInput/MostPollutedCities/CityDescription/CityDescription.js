@@ -20,7 +20,7 @@ class CityDescription extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>{this.state.cityDescription}</div>
+        <p>{this.state.cityDescription}</p>
       </React.Fragment>
     );
   }
