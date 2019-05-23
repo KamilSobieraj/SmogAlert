@@ -1,6 +1,11 @@
 @import "../../../UI/variables.scss";
 
 .city {
+  &__wrapper {
+    border: 5px solid $color-primary;
+    border-radius: 30px;
+    padding: 10px;
+  }
   &__name {
     background-color: $color-primary;
     border-radius: 20px;

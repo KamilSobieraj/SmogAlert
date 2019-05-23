@@ -38,7 +38,7 @@ class MostPollutedCities extends Component {
         a.measurements[0].value > b.measurements[0].value ? -1 : 1
       );
       displayCities = (
-        <Accordion>
+        <Accordion className="city__wrapper">
           {dataSortedByPM25.slice(0, 10).map(e => (
             <Card className="city__name" key={e.city + e.measurements[0].value}>
               <Accordion.Toggle
@@ -57,7 +57,7 @@ class MostPollutedCities extends Component {
         </Accordion>
       );
     }
-    return <div>{displayCities}</div>;
+    return <React.Fragment>{displayCities}</React.Fragment>;
   }
 }
 
