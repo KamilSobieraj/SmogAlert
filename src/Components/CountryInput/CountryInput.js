@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./CountryInput.scss";
 import MostPollutedCities from "./MostPollutedCities/MostPollutedCities";
 import ReactAutocomplete from "react-autocomplete";
 
@@ -10,8 +11,8 @@ class CountryInput extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.countryID = "";
   }
-  componentDidMount() {
-    if (sessionStorage.getItem("typedCountry") === "") {
+  componentWillMount() {
+    if (sessionStorage.getItem("typedCountry") === null) {
       sessionStorage.setItem("typedCountry", "");
     }
   }
@@ -46,12 +47,14 @@ class CountryInput extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <form onSubmit={this.handleSubmitCountry}>
-          <label>
-            Type Country (Poland, Germany, France and Spain are available)
+      <div className="content__wrapper">
+        <form onSubmit={this.handleSubmitCountry} className="content__form">
+          <label className="form__label">
+            Type a country <br />
+            <span>(Poland, Germany, France and Spain available only)</span>
           </label>
           <br />
+
           <ReactAutocomplete
             items={[
               { id: "poland", label: "Poland" },
@@ -65,10 +68,11 @@ class CountryInput extends Component {
             getItemValue={item => item.label}
             renderItem={(item, highlighted) => (
               <div
+                className="form__list"
                 key={item.id}
-                style={{
-                  backgroundColor: highlighted ? "#eee" : "transparent"
-                }}
+                // style={{
+                //   backgroundColor: highlighted ? "#eee" : "transparent"
+                // }}
               >
                 {item.label}
               </div>
@@ -77,11 +81,14 @@ class CountryInput extends Component {
             onChange={this.handleChange}
             //onSelect={this.handleSelect}
           />
-          <input type="submit" value="Submit" />
-        </form>
 
-        <MostPollutedCities countryID={this.countryID} />
-      </React.Fragment>
+          <input type="submit" value="Submit" className="form__button" />
+        </form>
+        <MostPollutedCities
+          countryID={this.countryID}
+          className="content__cities-display"
+        />
+      </div>
     );
   }
 }

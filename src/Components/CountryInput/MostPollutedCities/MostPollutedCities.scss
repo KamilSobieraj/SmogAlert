@@ -1,0 +1,15 @@
+@import "../../../UI/variables.scss";
+
+.city {
+  &__name {
+    background-color: $color-primary;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  &__details {
+    background-color: $color-secondary;
+    text-transform: none;
+    font-weight: 500;
+  }
+}

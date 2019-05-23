@@ -1,0 +1,40 @@
+@import "../../UI//variables.scss";
+
+.content {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 40px 40px 0 40px;
+  }
+  &__form {
+    grid-column: 1/2;
+    color: $color-font-primary;
+  }
+  &__cities-display {
+    grid-column: 2/3;
+    color: $color-font-secondary;
+  }
+}
+input {
+  background-color: $color-primary;
+  color: $color-font-secondary;
+  font-weight: 500;
+  border: 1px solid $color-secondary;
+  border-radius: 5px;
+  &[type="submit"] {
+    margin-left: 10px;
+  }
+}
+.form {
+  &__label {
+    font-size: 1.2rem;
+    & span {
+      font-size: 0.8rem;
+    }
+  }
+  &__list {
+    background-color: $color-secondary;
+    color: $color-font-secondary;
+    font-weight: 500;
+  }
+}

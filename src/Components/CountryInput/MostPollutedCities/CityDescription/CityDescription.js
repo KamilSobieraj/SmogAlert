@@ -20,7 +20,11 @@ class CityDescription extends Component {
   render() {
     return (
       <React.Fragment>
-        <p>{this.state.cityDescription}</p>
+        <p>
+          {this.state.cityDescription === undefined
+            ? "Unfortunately, we have no information about the place."
+            : this.state.cityDescription}
+        </p>
       </React.Fragment>
     );
   }

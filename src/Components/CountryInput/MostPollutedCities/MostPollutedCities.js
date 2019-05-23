@@ -40,7 +40,7 @@ class MostPollutedCities extends Component {
       displayCities = (
         <Accordion>
           {dataSortedByPM25.slice(0, 10).map(e => (
-            <Card key={e.city + e.measurements[0].value}>
+            <Card className="city__name" key={e.city + e.measurements[0].value}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey={e.city + e.measurements[0].value}
@@ -48,7 +48,7 @@ class MostPollutedCities extends Component {
                 {e.city} ({e.measurements[0].value})
               </Accordion.Toggle>
               <Accordion.Collapse eventKey={e.city + e.measurements[0].value}>
-                <Card.Body>
+                <Card.Body className="city__details">
                   <CityDescription cityName={e.city} />
                 </Card.Body>
               </Accordion.Collapse>
