@@ -12,7 +12,11 @@ class CountryInput extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.countryID = "";
   }
-
+  componentDidMount() {
+    if (sessionStorage.getItem("typedCountry") === "") {
+      sessionStorage.setItem("typedCountry", "");
+    }
+  }
   handleSubmitCountry(event) {
     event.preventDefault();
     let countryName = this.state.typedCountry;
@@ -38,7 +42,8 @@ class CountryInput extends Component {
     }
   }
   handleChange(event) {
-    this.setState({ typedCountry: event.target.value });
+    sessionStorage.setItem("typedCountry", event.target.value);
+    this.forceUpdate(); //this.setState({ typedCountry: event.target.value });
   }
   render() {
     return (
@@ -50,7 +55,7 @@ class CountryInput extends Component {
           <br />
           <input
             type="text"
-            value={this.state.typedCountry}
+            value={sessionStorage.getItem("typedCountry")}
             onChange={this.handleChange}
             autoComplete="on"
           />
