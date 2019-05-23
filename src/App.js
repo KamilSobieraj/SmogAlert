@@ -19,6 +19,7 @@ export default App;
 
 /**
 //*    TODO
+//* Input validation (casing)
 //* Parameter input  (pm,co, so)
 //*
 */

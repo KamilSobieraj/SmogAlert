@@ -9,17 +9,25 @@ class MostPollutedCities extends Component {
     this.state = { fetchedData: null, countryID: this.props.countryID };
   }
 
-  componentWillReceiveProps(props) {
-    fetch(
-      `https://api.openaq.org/v1/latest?limit=350&parameter=pm25&country=${
-        props.countryID
-      }`
-    )
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ fetchedData: json });
-      })
-      .catch(err => console.log(err));
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.countryID !== prevState.countryID) {
+      return { countryId: nextProps.countryID };
+    } else return null;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.countryID !== this.props.countryID) {
+      fetch(
+        `https://api.openaq.org/v1/latest?limit=350&parameter=pm25&country=${
+          this.props.countryID
+        }`
+      )
+        .then(res => res.json())
+        .then(json => {
+          this.setState({ fetchedData: json });
+        })
+        .catch(err => console.log(err));
+    }
   }
 
   render() {
@@ -32,7 +40,7 @@ class MostPollutedCities extends Component {
       displayCities = (
         <Accordion>
           {dataSortedByPM25.slice(0, 10).map(e => (
-            <Card>
+            <Card key={e.city + e.measurements[0].value}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey={e.city + e.measurements[0].value}

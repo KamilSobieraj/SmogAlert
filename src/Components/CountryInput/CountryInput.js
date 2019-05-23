@@ -5,14 +5,11 @@ class CountryInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      typedCountry: "",
-      setCountryID: "",
-      renderCities: ""
+      typedCountry: ""
     };
 
     this.handleSubmitCountry = this.handleSubmitCountry.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.renderCities = <p>Type a country!</p>;
     this.countryID = "";
   }
 
