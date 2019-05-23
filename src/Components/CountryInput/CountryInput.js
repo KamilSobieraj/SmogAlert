@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import MostPollutedCities from "./MostPollutedCities/MostPollutedCities";
+import ReactAutocomplete from "react-autocomplete";
 
 class CountryInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      typedCountry: ""
-    };
 
     this.handleSubmitCountry = this.handleSubmitCountry.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -19,21 +17,21 @@ class CountryInput extends Component {
   }
   handleSubmitCountry(event) {
     event.preventDefault();
-    let countryName = this.state.typedCountry;
+    let countryName = sessionStorage.getItem("typedCountry").toLowerCase();
     switch (countryName) {
-      case "Poland":
+      case "poland":
         this.forceUpdate();
         this.countryID = "PL";
         break;
-      case "Germany":
+      case "germany":
         this.forceUpdate();
         this.countryID = "DE";
         break;
-      case "France":
+      case "france":
         this.forceUpdate();
         this.countryID = "FR";
         break;
-      case "Spain":
+      case "spain":
         this.forceUpdate();
         this.countryID = "ES";
         break;
@@ -43,8 +41,9 @@ class CountryInput extends Component {
   }
   handleChange(event) {
     sessionStorage.setItem("typedCountry", event.target.value);
-    this.forceUpdate(); //this.setState({ typedCountry: event.target.value });
+    this.forceUpdate();
   }
+
   render() {
     return (
       <React.Fragment>
@@ -53,11 +52,30 @@ class CountryInput extends Component {
             Type Country (Poland, Germany, France and Spain are available)
           </label>
           <br />
-          <input
-            type="text"
+          <ReactAutocomplete
+            items={[
+              { id: "poland", label: "Poland" },
+              { id: "germany", label: "Germany" },
+              { id: "france", label: "France" },
+              { id: "spain", label: "Spain" }
+            ]}
+            shouldItemRender={(item, value) =>
+              item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
+            }
+            getItemValue={item => item.label}
+            renderItem={(item, highlighted) => (
+              <div
+                key={item.id}
+                style={{
+                  backgroundColor: highlighted ? "#eee" : "transparent"
+                }}
+              >
+                {item.label}
+              </div>
+            )}
             value={sessionStorage.getItem("typedCountry")}
             onChange={this.handleChange}
-            autoComplete="on"
+            //onSelect={this.handleSelect}
           />
           <input type="submit" value="Submit" />
         </form>
