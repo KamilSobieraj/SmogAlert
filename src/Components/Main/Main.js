@@ -16,10 +16,3 @@ const main = () => {
 };
 
 export default main;
-
-/**
-//*    TODO
-//* Input validation (casing)
-//* Parameter input  (pm,co, so)
-//*
-*/

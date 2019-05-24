@@ -15,20 +15,6 @@
     color: $color-font-secondary;
   }
 }
-input,
-select {
-  background-color: $color-primary;
-  color: $color-font-secondary;
-  font-weight: 500;
-  border: 1px solid $color-secondary;
-  border-radius: 5px;
-  &[type="submit"] {
-    margin-left: 10px;
-  }
-}
-option {
-  background-color: $color-secondary;
-}
 .form {
   &__label {
     font-size: 1.2rem;
@@ -44,4 +30,18 @@ option {
     color: $color-font-secondary;
     font-weight: 500;
   }
+}
+input,
+select {
+  background-color: $color-primary;
+  color: $color-font-secondary;
+  font-weight: 500;
+  border: 1px solid $color-secondary;
+  border-radius: 5px;
+  &[type="submit"] {
+    margin-left: 10px;
+  }
+}
+option {
+  background-color: $color-secondary;
 }

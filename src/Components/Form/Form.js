@@ -44,7 +44,7 @@ class Form extends Component {
         this.countryID = "ES";
         break;
       default:
-        alert(`Please type oneof this: Poland, Germany, France or Spain`);
+        alert(`Please type one of this: Poland, Germany, France or Spain`);
     }
 
     switch (measurement) {
@@ -104,14 +104,8 @@ class Form extends Component {
               item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
             }
             getItemValue={item => item.label}
-            renderItem={(item, highlighted) => (
-              <div
-                className="form__list"
-                key={item.id}
-                // style={{
-                //   backgroundColor: highlighted ? "#eee" : "transparent"
-                // }}
-              >
+            renderItem={item => (
+              <div className="form__list" key={item.id}>
                 {item.label}
               </div>
             )}

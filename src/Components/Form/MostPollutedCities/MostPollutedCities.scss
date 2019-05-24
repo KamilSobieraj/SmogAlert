@@ -5,6 +5,7 @@
     border: 5px solid $color-primary;
     border-radius: 30px;
     padding: 10px;
+    cursor: pointer;
   }
   &__name {
     background-color: $color-primary;
@@ -16,5 +17,6 @@
     background-color: $color-secondary;
     text-transform: none;
     font-weight: 500;
+    cursor: auto;
   }
 }
