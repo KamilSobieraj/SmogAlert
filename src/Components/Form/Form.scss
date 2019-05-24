@@ -15,7 +15,8 @@
     color: $color-font-secondary;
   }
 }
-input {
+input,
+select {
   background-color: $color-primary;
   color: $color-font-secondary;
   font-weight: 500;
@@ -25,9 +26,15 @@ input {
     margin-left: 10px;
   }
 }
+option {
+  background-color: $color-secondary;
+}
 .form {
   &__label {
     font-size: 1.2rem;
+    &__parameter {
+      margin-top: 20px;
+    }
     & span {
       font-size: 0.8rem;
     }

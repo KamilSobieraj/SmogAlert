@@ -12,15 +12,20 @@ class MostPollutedCities extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.countryID !== prevState.countryID) {
       return { countryId: nextProps.countryID };
+    } else if (nextProps.measurement !== prevState.measurement) {
+      return { measurement: nextProps.measurement };
     } else return null;
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.countryID !== this.props.countryID) {
+    if (
+      prevProps.countryID !== this.props.countryID ||
+      prevProps.measurement !== this.props.measurement
+    ) {
       fetch(
-        `https://api.openaq.org/v1/latest?limit=350&parameter=pm25&country=${
-          this.props.countryID
-        }`
+        `https://api.openaq.org/v1/latest?limit=350&parameter=${
+          this.props.measurement
+        }&country=${this.props.countryID}`
       )
         .then(res => res.json())
         .then(json => {
